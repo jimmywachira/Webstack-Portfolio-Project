@@ -1,15 +1,13 @@
 @props(['tag','size' => 'base'])
 
-    @php
-      $classes = "bg-white/10 p-2 rounded-l rounded-tl-none rounded-br-fullhover:bg-white/25 transition-colors duration-300 font-bold";
+@php
+    $classes = "inline-block bg-blue-900/30 text-blue-200 hover:bg-blue-700 hover:text-white transition-colors duration-200 font-semibold rounded-full";
+    if ($size === 'base') {
+        $classes .= ' px-5 py-1 text-sm';
+    }
+    if ($size === 'small') {
+        $classes .= ' px-3 py-1 text-xs';
+    }
+@endphp
 
-     if ($size === 'base') {
-        $classes = ' px-5 py-1 text-sm';
-        }
-
-      if ($size === 'small') { 
-          $classes = ' px-3 py-1 text-xm';
-        }
-    @endphp
-    
 <a href="/tags/{{ strtolower($tag->name) }}" class="{{ $classes }}">{{ ucwords($tag->name) }}</a>
