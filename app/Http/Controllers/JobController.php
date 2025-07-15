@@ -41,7 +41,22 @@ class JobController extends Controller
      */
     public function store(StoreJobRequest $request)
     {
-        //
+         request()->validate([
+            'title' => ['required', 'min:3'],
+            'salary' => ['required']
+        ]);
+
+        $job = Job::create([
+            'title' => request('title'),
+            'salary' => request('salary'),
+            'employer_id' => 1
+        ]);
+
+        // Mail::to($job->employer->user)->queue(
+        //     new JobPosted($job)
+        // );
+
+        return redirect('/jobs');
     }
 
     /**
@@ -49,7 +64,9 @@ class JobController extends Controller
      */
     public function show(Job $job)
     {
-        //
+        return view('jobs.show', [
+            'job' => $job
+        ]);
     }
 
     /**
@@ -57,7 +74,9 @@ class JobController extends Controller
      */
     public function edit(Job $job)
     {
-        //
+        return view('jobs.edit', [
+            'job' => $job
+        ]);
     }
 
     /**
@@ -65,7 +84,9 @@ class JobController extends Controller
      */
     public function update(UpdateJobRequest $request, Job $job)
     {
-        //
+        $job->update($request->validated());
+
+        return redirect()->route('jobs.show', $job)->with('success', 'Job updated successfully.');
     }
 
     /**
@@ -73,6 +94,8 @@ class JobController extends Controller
      */
     public function destroy(Job $job)
     {
-        //
+        $job->delete();
+
+        return redirect()->route('jobs.index')->with('success', 'Job deleted successfully.');
     }
 }

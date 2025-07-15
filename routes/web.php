@@ -8,7 +8,7 @@ use App\Http\Controllers\RegisteredUserController;
 #namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 
-/*
+/* 
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -20,8 +20,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-// Route::view('/', 'home');
-// Route::view('/contact', 'contact');
+Route::view('/', 'home');
+Route::view('/about', 'about');
 
 route::middleware('guest')->group(function () {
     Route::get('/login', [SessionController::class, 'create'])->name('login');
@@ -30,7 +30,7 @@ route::middleware('guest')->group(function () {
     Route::post('/register', [RegisteredUserController::class, 'store']);
 });
 
- Route::get('/', [JobController::class, 'index']);
+ Route::get('/jobs', [JobController::class, 'index']);
  Route::get('/jobs/create', [JobController::class, 'create']);
  Route::post('/jobs', [JobController::class, 'store'])->middleware('auth');
  Route::get('/jobs/{job}', [JobController::class, 'show']);
@@ -46,6 +46,6 @@ route::middleware('guest')->group(function () {
 Route::get('/register', [RegisteredUserController::class, 'create']);
 Route::post('/register', [RegisteredUserController::class, 'store']);
 
-// Route::get('/login', [SessionController::class, 'create'])->name('login');
-// Route::post('/login', [SessionController::class, 'store']);
+Route::get('/login', [SessionController::class, 'create'])->name('login');
+Route::post('/login', [SessionController::class, 'store']);
 Route::post('/logout', [SessionController::class, 'destroy'])->middleware('auth');

@@ -11,11 +11,11 @@
 
         <section>
         <x-section-heading> 
-            featured jobs
+            searched jobs
         </x-section-heading>
 
         <div class="grid mt-6 lg:grid-cols-3 gap-8">
-            @foreach ($featuredJobs as $job)
+            @foreach ($searchedJobs as $job)
                 <a href="/jobs/{{ $job['id'] }}" class="block px-4 py-6 border border-gray-200 rounded-lg">
                     <x-job-card :$job/>
                 </a>
@@ -43,7 +43,7 @@
         </x-section-heading>
 
        <div class="mt-6 space-y-6">
-            @foreach ($jobs as $job)
+            @foreach ($searchedJobs as $job)
                 <x-job-card-wide :$job/>
             @endforeach
         </div>

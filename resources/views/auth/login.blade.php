@@ -7,7 +7,7 @@
 
          <div class="mt-6 flex items-center justify-end gap-x-6">
             <a href="/" class="border border-blue-300 px-3 py-2 rounded-md font-semibold leading-6 text-white-900">Cancel</a>
-        <x-forms.button>Log In</x-button>
+        <x-forms.button type="submit">Log In</x-button>
         </div>
     </x-forms.form>
 </x-layout>
