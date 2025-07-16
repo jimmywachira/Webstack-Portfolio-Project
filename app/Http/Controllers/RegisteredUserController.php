@@ -28,24 +28,25 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         #dd($request->all());
-         $userAttributes = request()->validate([
+        $attributes = request()->validate([
             'name' => ['required'],
-            'email' => ['required', 'email','unique:users,email'],
-            'password'   => ['required', Password::min(6), 'confirmed']
+            'email' => ['required', 'email', 'unique:users,email'],
+            'password' => ['required', Password::min(6), 'confirmed'],
+            'employer' => ['required'],
+            // 'logo' => ['required', File::types('png', 'jpg', 'jpeg', 'gif', 'webp')->max(1024)]
         ]);
 
-        $employerAttributes = request()->validate([
-            'employer' => ['required'],
-            'logo' => ['required', File::types('png', 'jpg', 'jpeg', 'gif', 'webp')->max(1024)]]);
-        
+        $user = User::create([
+            'name' => $attributes['name'],
+            'email' => $attributes['email'],
+            'password' => bcrypt($attributes['password']),
+        ]);
 
-        $user = User::create($userAttributes);
-        
-        $logoPath = $request->file('logo')->store('logos');
+        // $logoPath = $request->file('logo')->store('logos');
 
         $user->employer()->create([
-            'employer' => $employerAttributes['employer'],
-            'logo' => $logoPath
+            'employer' => $attributes['employer'],
+            // 'logo' => $logoPath
         ]);
 
         Auth::login($user);

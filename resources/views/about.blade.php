@@ -1,5 +1,5 @@
 <x-layout>
-    <section class="max-w-3xl mx-auto py-20 text-center">
+    <section class="max-w-3xl mx-auto py-10 text-center">
         <h1 class="text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-blue-400 via-blue-600 to-blue-400 text-transparent bg-clip-text drop-shadow">
             About JobsLink
         </h1>
@@ -22,5 +22,5 @@
             </ul>
         </div>
     </section>
-    <x-footer />
+    {{-- <x-footer /> --}}
 </x-layout>
