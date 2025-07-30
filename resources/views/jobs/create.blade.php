@@ -11,6 +11,8 @@
             <option>Full Time</option>
         </x-forms.select>
 
+        <x-forms.checkbox label="Remote" name="remote" />
+
         <x-forms.input label="URL" name="url" placeholder="https://acme.com/jobs/ceo-wanted" />
         <x-forms.checkbox label="Feature (Costs Extra)" name="featured" />
 
@@ -18,6 +20,6 @@
 
         <x-forms.input label="Tags (comma separated)" name="tags" placeholder="laracasts, video, education" />
 
-        <x-forms.button>Publish</x-forms.button>
+        <x-forms.button type="submit">Publish</x-forms.button>
     </x-forms.form>
 </x-layout>

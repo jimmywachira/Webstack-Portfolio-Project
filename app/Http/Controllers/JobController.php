@@ -32,7 +32,7 @@ class JobController extends Controller
     public function create()
     {
         return view('jobs.create', [
-            #'tags' => Tag::all(),
+            'tags' => Tag::all(),
         ]);
     }
 
@@ -49,7 +49,10 @@ class JobController extends Controller
         $job = Job::create([
             'title' => request('title'),
             'salary' => request('salary'),
-            'employer_id' => 1
+            'employer_id' => 1,
+            'featured' => request('featured') ? true : false,
+            'location' => request('location'),
+            'remote' => request('remote') ? true : false,
         ]);
 
         // Mail::to($job->employer->user)->queue(

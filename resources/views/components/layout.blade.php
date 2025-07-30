@@ -6,13 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>jobsLink</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abel">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Outfit">
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 </head>
 
-<body class="h-full antialiased font-bold bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white" style="font-family:Abel">
+<body class="antialiased font-bold bg-gradient-to-br from-blue-900 to-blue-600 to-blue-300 text-black" style="font-family:Outfit">
     <div class="flex flex-col">
-        <nav class="sticky top-0 bg-gray-900/80 backdrop-blur-lg shadow-lg border-b border-blue-900/30">
+        <nav class="sticky top-0 backdrop-blur-lg shadow-lg border-b border-blue-900/30">
             <div class="max-w-7xl mx-auto flex justify-between items-center py-4 px-6">
                 <div class="flex items-center gap-3">
                     <ion-icon name="rocket-outline" class="text-blue-500 text-3xl"></ion-icon>
@@ -27,35 +27,38 @@
 
                 <div class="flex items-center gap-1">
                     @guest
-                        <x-nav-link href="/register" :active="request()->is('register')">Sign Up</x-nav-link>
-                        <x-nav-link href="/login" :active="request()->is('login')">Log In</x-nav-link>
+                    <x-nav-link href="/register" :active="request()->is('register')">Sign Up</x-nav-link>
+                    <x-nav-link href="/login" :active="request()->is('login')">Log In</x-nav-link>
                     @endguest
+
                     @auth
-                        <form method="POST" action="/logout">
-                            @csrf
-                            <x-forms.button >Log Out</x-forms.button>
-                        </form>
+                    <form method="POST" action="/logout">
+                        @csrf
+                        <x-forms.button>Log Out</x-forms.button>
+                    </form>
                     @endauth
                 </div>
-                </div>
             </div>
-        </nav>
-        
-        <header class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 shadow py-2 border-b border-blue-900/20">
-            @auth
-                <div class="max-w-7xl mx-auto px-4 flex justify-end">
-                    <a href="/jobs/create" class="bg-blue-600 hover:bg-blue-700 px-4 py-3 rounded-lg shadow-lg text-lg">Post a Job</a>
-                </div>
-                
-            @endauth
-        </header>
-        <main class="flex-1 mt-10 max-w-7xl mx-auto px-4 pb-16">
-            {{ $slot }}
-        </main>
+    </div>
+    </nav>
+
+    @auth
+    <header class="bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 shadow py-2">
+        <div class="max-w-7xl mx-auto px-4 flex justify-end ">
+            <a href="/jobs/create" class="bg-blue-600 hover:bg-blue-700 px-3 py-2 rounded-r rounded-full border-b border-blue-900/20 shadow-xl">Post a Job</a>
+        </div>
+    </header>
+    @endauth
+
+
+    <main class="flex-1 mt-10 max-w-7xl mx-auto px-4 pb-8">
+        {{ $slot }}
+    </main>
     </div>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <x-footer />
+
 </body>
 </html>

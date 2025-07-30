@@ -32,7 +32,7 @@ class RegisteredUserController extends Controller
             'name' => ['required'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', Password::min(6), 'confirmed'],
-            'employer' => ['required'],
+            'name' => ['required'],
             // 'logo' => ['required', File::types('png', 'jpg', 'jpeg', 'gif', 'webp')->max(1024)]
         ]);
 
@@ -45,7 +45,7 @@ class RegisteredUserController extends Controller
         // $logoPath = $request->file('logo')->store('logos');
 
         $user->employer()->create([
-            'employer' => $attributes['employer'],
+            'name' => $attributes['name'],
             // 'logo' => $logoPath
         ]);
 
