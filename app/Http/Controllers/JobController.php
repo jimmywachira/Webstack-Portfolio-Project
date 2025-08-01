@@ -7,6 +7,7 @@ use App\Models\Job;
 use App\Models\Tag;
 use App\Http\Requests\StoreJobRequest;
 use App\Http\Requests\UpdateJobRequest;
+use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
@@ -77,6 +78,8 @@ class JobController extends Controller
      */
     public function edit(Job $job)
     {
+        #$job->load('tags');
+
         return view('jobs.edit', [
             'job' => $job
         ]);

@@ -12,7 +12,7 @@
 
 <body class="antialiased font-bold bg-gradient-to-br from-blue-900 to-blue-600 to-blue-300 text-black" style="font-family:Outfit">
     <div class="flex flex-col">
-        <nav class="sticky top-0 backdrop-blur-lg shadow-lg border-b border-blue-900/30">
+        <nav class="sticky top-0 backdrop-blur-lg shadow border-blue-900/30">
             <div class="max-w-7xl mx-auto flex justify-between items-center py-4 px-6">
                 <div class="flex items-center gap-3">
                     <ion-icon name="rocket-outline" class="text-blue-500 text-3xl"></ion-icon>
@@ -39,17 +39,24 @@
                     @endauth
                 </div>
             </div>
+        </nav>
     </div>
-    </nav>
+
+    <div class="flex justify-end p-2 m-2">
+        @if(session('success'))
+        <div class="max-w-7xl mx-auto px-4 py-2 text-white">
+            {{ session('success') }}
+        </div>
+        @endif
+    </div>
 
     @auth
-    <header class="bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 shadow py-2">
-        <div class="max-w-7xl mx-auto px-4 flex justify-end ">
-            <a href="/jobs/create" class="bg-blue-600 hover:bg-blue-700 px-3 py-2 rounded-r rounded-full border-b border-blue-900/20 shadow-xl">Post a Job</a>
+    <header class="py-2">
+        <div class="max-w-7xl mx-auto px-4 flex justify-end">
+            <a href="/jobs/create" class="bg-blue-600 hover:text-white px-3 py-2 shadow-xl">Post a Job</a>
         </div>
     </header>
     @endauth
-
 
     <main class="flex-1 mt-10 max-w-7xl mx-auto px-4 pb-8">
         {{ $slot }}

@@ -18,6 +18,12 @@
 
         <x-forms.divider />
 
+        {{-- <select label="employer" name="employer">
+        @foreach($employers as $employee)
+            <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+        @endforeach
+        </select> --}}
+
         <x-forms.input label="Tags (comma separated)" name="tags" placeholder="laracasts, video, education" />
 
         <x-forms.button type="submit">Publish</x-forms.button>

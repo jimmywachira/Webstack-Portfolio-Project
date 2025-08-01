@@ -32,8 +32,8 @@ class RegisteredUserController extends Controller
             'name' => ['required'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', Password::min(6), 'confirmed'],
-            'name' => ['required'],
-            // 'logo' => ['required', File::types('png', 'jpg', 'jpeg', 'gif', 'webp')->max(1024)]
+            #'employer' => ['required'],
+            #'logo' => ['required', File::types('png', 'jpg', 'jpeg', 'gif', 'webp')->max(1024)]
         ]);
 
         $user = User::create([
@@ -42,15 +42,15 @@ class RegisteredUserController extends Controller
             'password' => bcrypt($attributes['password']),
         ]);
 
-        // $logoPath = $request->file('logo')->store('logos');
+        #$logoPath = $request->file('logo')->store('logos');
 
-        $user->employer()->create([
-            'name' => $attributes['name'],
-            // 'logo' => $logoPath
-        ]);
+        // $user->employer()->create([
+        //     'name' => $attributes['name'],
+        //     #'logo' => $logoPath
+        // ]);
 
         Auth::login($user);
 
-        return redirect('/');
+        return redirect('/')->with('success', 'Account created successfully.');
     }
 } 
