@@ -13,5 +13,4 @@
         <x-tag :$tag size="small" />
         @endforeach
     </div>
-
 </x-panel>

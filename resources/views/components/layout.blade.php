@@ -4,19 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>jobsLink</title>
+    <title>JobsLink</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Outfit">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google Sans Code">
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 </head>
 
-<body class="antialiased font-bold bg-gradient-to-br from-blue-900 to-blue-600 to-blue-300 text-black" style="font-family:Outfit">
-    <div class="flex flex-col">
-        <nav class="sticky top-0 backdrop-blur-lg shadow border-blue-900/30">
+<body class="antialiased font-semibold bg-blue-900 text-white min-h-screen" style="font-family:Google Sans Code">
+    <!-- Floating Background Shapes -->
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="flex flex-col min-h-screen relative">
+        <!-- Glassmorphism Navigation -->
+        <nav class="sticky top-0 z-50 glass-effect shadow-xl">
             <div class="max-w-7xl mx-auto flex justify-between items-center py-4 px-6">
                 <div class="flex items-center gap-3">
-                    <ion-icon name="rocket-outline" class="text-blue-500 text-3xl"></ion-icon>
-                    <span class="text-2xl font-extrabold tracking-tight text-white">JobsLink</span>
+                    <ion-icon name="rocket-outline" class="text-blue-300 text-3xl drop-shadow-lg"></ion-icon>
+                    <span class="text-2xl font-extrabold tracking-tight text-white drop-shadow-lg">JobsLink</span>
                 </div>
 
                 <div class="hidden md:flex gap-1">
@@ -34,38 +42,47 @@
                     @auth
                     <form method="POST" action="/logout">
                         @csrf
-                        <x-forms.button>Log Out</x-forms.button>
+                        <x-forms.button class="glass-effect hover:bg-white/15 transition-all duration-300">Log Out</x-forms.button>
                     </form>
                     @endauth
                 </div>
             </div>
         </nav>
-    </div>
 
-    <div class="flex justify-end p-2 m-2">
+        <!-- Success Message with Glass Effect -->
         @if(session('success'))
-        <div class="max-w-7xl mx-auto px-4 py-2 text-white">
-            {{ session('success') }}
+        <div class="flex justify-center p-2 m-2">
+            <div class="glass-effect px-6 py-3 rounded-lg text-white shadow-lg">
+                <ion-icon name="checkmark-circle" class="inline-block mr-2 text-green-400"></ion-icon>
+                {{ session('success') }}
+            </div>
         </div>
         @endif
-    </div>
 
-    @auth
-    <header class="py-2">
-        <div class="max-w-7xl mx-auto px-4 flex justify-end">
-            <a href="/jobs/create" class="bg-blue-600 hover:text-white px-3 py-2 shadow-xl">Post a Job</a>
-        </div>
-    </header>
-    @endauth
+        <!-- Hero Header with Background -->
+        @auth
+        <header class="hero-bg py-8 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-900/60 to-blue-900/40"></div>
+            <div class="max-w-7xl mx-auto px-4 flex justify-end relative z-10">
+                <a href="/jobs/create" class="glass-effect hover:bg-white/15 px-6 py-3 rounded-lg shadow-xl transition-all duration-300 transform hover:scale-105">
+                    <ion-icon name="add-circle" class="inline-block mr-2 text-xl"></ion-icon>
+                    Post a Job
+                </a>
+            </div>
+        </header>
+        @endauth
 
-    <main class="flex-1 mt-10 max-w-7xl mx-auto px-4 pb-8">
-        {{ $slot }}
-    </main>
+        <!-- Main Content Area -->
+        <main class="flex-1 mt-10 max-w-7xl mx-auto px-4 pb-8 relative z-10">
+            <div class="glass-effect rounded-2xl p-8 shadow-2xl backdrop-blur-xl">
+                {{ $slot }}
+            </div>
+        </main>
     </div>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <x-footer />
 
+    <x-footer />
 </body>
 </html>

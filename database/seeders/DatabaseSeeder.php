@@ -13,18 +13,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        User::factory(10)->create();
 
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //      'email' => 'test@example.com',
-        // ]);
-
-        User::factory()->create([
-            'name' => 'jimmy',
-             'email' => 'jimmy@gmail.com',
-             'password' => bcrypt('password'),
-        ]);
+        User::firstOrCreate(
+            ['email' => 'test@example.com',
+                'name' => 'Test User',
+                'password' => bcrypt('password'),
+            ]
+        );
 
         $this->call(JobSeeder::class);
     }

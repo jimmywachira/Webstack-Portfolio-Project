@@ -9,7 +9,7 @@ class SessionController extends Controller
 {
      public function create()
     {
-        return view('auth.login')->with('success', 'Welcome back!');
+        return view('auth.login')->with('success', 'Welcome back');
     }
 
     public function store()
@@ -19,9 +19,9 @@ class SessionController extends Controller
             'password' => ['required']
         ]);
 
-        if (! Auth::attempt($attributes)) {
+        if (!Auth::attempt($attributes)) {
             throw ValidationException::withMessages([
-                'email' => 'Sorry, those credentials do not match.'
+                'email' => 'Sorry, invalid credentials. Please try again.'
             ]);
         }
 

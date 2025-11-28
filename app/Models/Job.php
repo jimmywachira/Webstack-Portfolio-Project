@@ -5,27 +5,27 @@ namespace App\Models;
 use App\Models\Employer;
 use App\Models\Tag;
 
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+ 
 class Job extends Model
 {
     use HasFactory;
+    protected $table = 'job_listings';
 
-        public function tag($name){
-                $tag = Tag::firstOrCreate(['name' => strtolower($name)]);
+    // public function tag($name){
+    //     $tag = Tag::firstOrCreate(['name' => strtolower($name)]);
 
-        $this->tags()->attach($tag);
-    }
+    //     $this->tags()->attach($tag);
+    // }
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class,foreignPivotKey:"job_listing_id");
     }
 
     public function employer()
     {
         return $this->belongsTo(Employer::class);
-    }   
+    }
 }

@@ -5,7 +5,6 @@ use App\Http\Controllers\JobController;
 
 use App\Http\Controllers\RegisteredUserController;
 use App\Livewire\Search;
-#namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 
 /* 
@@ -19,11 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::view('/', 'home');
 Route::view('/about', 'about');
 Route::get('/search', Search::class)->name('search');
-
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [SessionController::class, 'create'])->name('login');
@@ -45,7 +42,7 @@ Route::patch('/jobs/{job}', [JobController::class, 'update']);
 Route::delete('/jobs/{job}', [JobController::class, 'destroy']);
 
 // Auth
-Route::get('/register', [RegisteredUserController::class, 'create']);
+Route::get('/register', [RegisteredUserController::class, 'create']);    
 Route::post('/register', [RegisteredUserController::class, 'store']);
 
 Route::get('/login', [SessionController::class, 'create'])->name('login');

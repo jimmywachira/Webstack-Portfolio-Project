@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Job;
 use App\Models\Tag;
 use App\Http\Requests\StoreJobRequest;
@@ -13,16 +12,19 @@ class JobController extends Controller
 {
     /**
      * Display a listing of the resource.
-     */
+    */
     public function index()
     {
-        $jobs =Job::all()->groupBy('featured');
+        #$jobs = Job::all()->groupBy('featured');
+        $jobs = Job::all();
 
         // return $jobs;
 
         return view('jobs.index',[
-            'featuredJobs' => $jobs[0],
-            'jobs' => $jobs[1],
+            // 'featuredJobs' => $jobs[0],
+            // 'jobs' => $jobs[1],
+            'featuredJobs' => $jobs,
+            'jobs' => $jobs,
              'tags'=> Tag::all(),
         ]);
     }
@@ -77,7 +79,7 @@ class JobController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Job $job)
-    {
+    { 
         #$job->load('tags');
 
         return view('jobs.edit', [
@@ -91,7 +93,6 @@ class JobController extends Controller
     public function update(UpdateJobRequest $request, Job $job)
     {
         $job->update($request->validated());
-
         return redirect()->route('jobs.show', $job)->with('success', 'Job updated successfully.');
     }
 
@@ -101,7 +102,6 @@ class JobController extends Controller
     public function destroy(Job $job)
     {
         $job->delete();
-
         return redirect()->route('jobs.index')->with('success', 'Job deleted successfully.');
     }
 }
