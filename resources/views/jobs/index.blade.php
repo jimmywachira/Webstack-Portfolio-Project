@@ -3,7 +3,6 @@
         <section class="text-center">
             <section class="text-center">
                 <h1 class="font-bold text-4xl">lets find your next job</h1>
-
                 <form action="">
                     <input type="text" wire:model.live="search" placeholder="search for jobs, companies, tags..." class="w-full max-w-xl bg-white/10 rounded-lg px-10 py-3 mt-6 focus:outline-none focus:ring-2 focus:ring-blue-800 transition-colors duration-300">
                 </form>
@@ -33,7 +32,6 @@
                     @foreach($tags as $tag)
                     <x-tag :$tag />
                     @endforeach
-
                 </div>
             </section>
 
@@ -47,7 +45,10 @@
                     <x-job-card-wide :$job />
                     @endforeach
                 </div>
-
             </section>
+
+            {{-- <div>
+                {{ $jobs->links() }}
+    </div> --}}
     </div>
 </x-layout>

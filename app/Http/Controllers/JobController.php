@@ -15,16 +15,13 @@ class JobController extends Controller
     */
     public function index()
     {
-        #$jobs = Job::all()->groupBy('featured');
-        $jobs = Job::all();
-
+        $jobs = Job::all()->groupBy('featured');
+        #->latest()->simplePaginate(10);
         // return $jobs;
 
         return view('jobs.index',[
-            // 'featuredJobs' => $jobs[0],
-            // 'jobs' => $jobs[1],
-            'featuredJobs' => $jobs,
-            'jobs' => $jobs,
+            'featuredJobs' => $jobs[0],
+            'jobs' => $jobs[1],
              'tags'=> Tag::all(),
         ]);
     }
@@ -60,7 +57,7 @@ class JobController extends Controller
 
         // Mail::to($job->employer->user)->queue(
         //     new JobPosted($job)
-        // );
+        //);
 
         return redirect('/jobs');
     }

@@ -32,7 +32,7 @@ class RegisteredUserController extends Controller
             'name' => ['required'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', Password::min(6), 'confirmed'],
-            #'employer' => ['required'],
+            #'employer_id' => ['required'],
             #'logo' => ['required', File::types('png', 'jpg', 'jpeg', 'gif', 'webp')->max(1024)]
         ]);
 
@@ -51,6 +51,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect('/')->with('success', 'Account created successfully.');
+        return redirect('/jobs')->with('success', 'Account created successfully.');
     }
 } 
