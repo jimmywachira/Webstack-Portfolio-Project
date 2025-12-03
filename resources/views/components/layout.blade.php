@@ -51,26 +51,29 @@
 
         <!-- Success Message with Glass Effect -->
         @if(session('success'))
-        <div class="flex justify-center p-2 m-2">
-            <div class="glass-effect px-6 py-3 rounded-lg text-white shadow-lg">
+        <div id="flash-message" class="flex justify-center p-2 m-2 transition-all duration-500 ease-out transform opacity-100">
+            <div class="glass-effect px-6 py-3 rounded-lg text-white shadow-lg transition-all duration-500">
                 <ion-icon name="checkmark-circle" class="inline-block mr-2 text-green-400"></ion-icon>
                 {{ session('success') }}
             </div>
         </div>
-        @endif
 
-        <!-- Hero Header with Background -->
-        @auth
-        <header class="hero-bg py-8 relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-r from-slate-900/60 to-blue-900/40"></div>
-            <div class="max-w-7xl mx-auto px-4 flex justify-end relative z-10">
-                <a href="/jobs/create" class="glass-effect hover:bg-white/15 px-6 py-3 rounded-lg shadow-xl transition-all duration-300 transform hover:scale-105">
-                    <ion-icon name="add-circle" class="inline-block mr-2 text-xl"></ion-icon>
-                    Post a Job
-                </a>
-            </div>
-        </header>
-        @endauth
+        <script>
+            (function() {
+                const el = document.getElementById('flash-message');
+                if (!el) return;
+                // hide after 3s
+                setTimeout(() => {
+                    el.classList.add('opacity-0', 'translate-y-4');
+                    // remove from DOM after transition
+                    el.addEventListener('transitionend', () => el.remove(), {
+                        once: true
+                    });
+                }, 3000);
+            })();
+
+        </script>
+        @endif
 
         <!-- Main Content Area -->
         <main class="flex-1 mt-10 max-w-7xl mx-auto px-4 pb-8 relative z-10">

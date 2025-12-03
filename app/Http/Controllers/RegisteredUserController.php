@@ -36,11 +36,7 @@ class RegisteredUserController extends Controller
             #'logo' => ['required', File::types('png', 'jpg', 'jpeg', 'gif', 'webp')->max(1024)]
         ]);
 
-        $user = User::create([
-            'name' => $attributes['name'],
-            'email' => $attributes['email'],
-            'password' => bcrypt($attributes['password']),
-        ]);
+        $user = User::create($attributes);
 
         #$logoPath = $request->file('logo')->store('logos');
 

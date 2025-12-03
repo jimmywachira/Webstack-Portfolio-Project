@@ -9,8 +9,8 @@
 
         <x-forms.divider />
 
-        {{-- <x-forms.input label="Employer Name" name="employer" /> --}}
-        {{-- <x-forms.input label="Employer Logo" name="logo" type="file" /> --}}
+        <x-forms.input label="Employer Name" name="employer" />
+        <x-forms.input label="Employer Logo" name="logo" type="file" />
 
         <x-forms.button> Register </x-forms.button>
     </x-forms.form>

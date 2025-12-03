@@ -5,7 +5,7 @@ $defaults = [
 'type' => 'text',
 'id' => $name,
 'name' => $name,
-'class' => 'rounded bg-white/10 border border-white/10 px-4 py-3 w-full',
+'class' => 'rounded bg-white/10 border border-white/10 px-3 py-3 w-3/4',
 'value' => old($name)
 ];
 @endphp

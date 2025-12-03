@@ -1,5 +1,18 @@
 <x-layout>
     <div class="flex flex-col justify-center space-y-5">
+
+        <!-- Hero Header with Background -->
+        @auth
+        <header class="hero-bg py-4 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 flex justify-end relative z-5 ">
+                <a href="/jobs/create" class="bg-gradient-to-r from-blue-600 to-blue-800 hover:bg-white/15 px-4 py-3 rounded-lg shadow-xl transition-all duration-300 transform hover:scale-105">
+                    <ion-icon name="add-circle" class="inline-block mr-2 text-xl"></ion-icon>
+                    Post a Job
+                </a>
+            </div>
+        </header>
+        @endauth
+
         <section class="text-center">
             <section class="text-center">
                 <h1 class="font-bold text-4xl">lets find your next job</h1>
@@ -13,7 +26,7 @@
                     featured jobs
                 </x-section-heading>
 
-                <div class="grid mt-6 lg:grid-cols-4 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-6 gap-4">
                     @foreach ($featuredJobs as $job)
                     <a href="/jobs/{{ $job['id'] }}" class="block px-4 py-6 border border-gray-200 rounded-lg">
                         <x-job-card :$job />
@@ -50,5 +63,6 @@
             {{-- <div>
                 {{ $jobs->links() }}
     </div> --}}
+    </section>
     </div>
 </x-layout>
