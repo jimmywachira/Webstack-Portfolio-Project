@@ -6,6 +6,8 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Livewire\Search;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\JobPosted;
 
 Route::view('/', 'home');
 Route::view('/about', 'about');
@@ -43,4 +45,14 @@ Route::controller(JobController::class)->group(function () {
     Route::delete('/jobs/{job}', 'destroy')
         ->middleware('auth')
          ->can('edit', 'job');
+});
+
+// Route::get('test', function () {
+//     $job = \App\Models\Job::first();
+//     return new \App\Mail\JobPosted($job);
+// });
+
+Route::get('test', function () {   
+    Mail::to('jwachira40@gmail.com')->send(new JobPosted());
+    return 'Mail sent';
 });
